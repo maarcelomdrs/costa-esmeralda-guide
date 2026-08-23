@@ -27,3 +27,26 @@ export async function getNeighborhoods(req: Request, res: Response) {
     return res.status(500).json({ error: 'Erro interno' })
   }
 }
+
+export async function postNeighborhood(req: Request, res: Response) {
+  try {
+    const body: unknown = req.body
+    if (
+      typeof body !== 'object' ||
+      body === null ||
+      !('name' in body) ||
+      typeof body.name !== 'string' ||
+      body.name.trim() === ''
+    ) {
+      return res.status(400).json({ error: 'Nome inválido' })
+    }
+
+    const neighborhood = await neighborhoodsService.postNeighborhood(body.name)
+
+    return res.json(neighborhood)
+  } catch (error) {
+    console.error(error)
+
+    return res.status(500).json({ error: 'Erro interno' })
+  }
+}

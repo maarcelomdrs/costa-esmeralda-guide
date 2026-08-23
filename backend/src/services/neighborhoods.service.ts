@@ -19,9 +19,21 @@ export async function getNeighborhoodById(
 export async function getNeighborhoods(): Promise<Neighborhood[] | null> {
   const neighborhoods = await neighborhoodsRepository.findAll()
 
-  if (neighborhoods[0]) {
-    return neighborhoods
+  if (!neighborhoods[0]) {
+    throw new Error('Nenhum bairro encontrado')
   }
 
-  throw new Error('Nenhum bairro encontrado')
+  return neighborhoods
+}
+
+export async function postNeighborhood(
+  name: string
+): Promise<Neighborhood | null> {
+  const neighborhood = await neighborhoodsRepository.create(name)
+
+  if (!neighborhood) {
+    throw new Error('Falha ao criar bairro')
+  }
+
+  return neighborhood
 }

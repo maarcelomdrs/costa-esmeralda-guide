@@ -21,4 +21,13 @@ export class NeighborhoodsRepository {
 
     return rows[0] ?? null
   }
+
+  async create(name: string): Promise<Neighborhood | null> {
+    const { rows } = await this.pool.query<Neighborhood>(
+      'INSERT INTO neighborhoods (name) VALUES ($1) ON CONFLICT (name) DO NOTHING RETURNING *',
+      [name]
+    )
+
+    return rows[0] ?? null
+  }
 }
