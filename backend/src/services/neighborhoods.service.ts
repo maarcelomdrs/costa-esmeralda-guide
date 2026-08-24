@@ -37,3 +37,15 @@ export async function postNeighborhood(
 
   return neighborhood
 }
+
+export async function deleteNeighborhoodById(
+  id: number
+): Promise<Neighborhood | null> {
+  const neighborhood = await neighborhoodsRepository.delete(id)
+
+  if (!neighborhood) {
+    throw new Error('Bairro não encontrado')
+  }
+
+  return neighborhood
+}

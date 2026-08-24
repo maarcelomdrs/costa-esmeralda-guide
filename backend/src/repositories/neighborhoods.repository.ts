@@ -30,4 +30,13 @@ export class NeighborhoodsRepository {
 
     return rows[0] ?? null
   }
+
+  async delete(id: number): Promise<Neighborhood | null> {
+    const { rows } = await this.pool.query<Neighborhood>(
+      'DELETE FROM neighborhoods WHERE (id) = $1 RETURNING *',
+      [id]
+    )
+
+    return rows[0] ?? null
+  }
 }

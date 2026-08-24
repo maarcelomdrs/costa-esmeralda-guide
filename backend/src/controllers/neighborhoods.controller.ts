@@ -50,3 +50,17 @@ export async function postNeighborhood(req: Request, res: Response) {
     return res.status(500).json({ error: 'Erro interno' })
   }
 }
+
+export async function deleteNeighborhood(req: Request, res: Response) {
+  try {
+    const neighborhood = await neighborhoodsService.deleteNeighborhoodById(
+      Number(req.params.id)
+    )
+
+    return res.json(neighborhood)
+  } catch (error) {
+    console.error(error)
+
+    return res.status(500).json({ error: 'Erro interno' })
+  }
+}
