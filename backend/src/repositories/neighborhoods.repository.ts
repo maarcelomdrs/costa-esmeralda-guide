@@ -39,4 +39,13 @@ export class NeighborhoodsRepository {
 
     return rows[0] ?? null
   }
+
+  async patchById(id: number, name: string) {
+    const { rows } = await this.pool.query<Neighborhood>(
+      'UPDATE neighborhoods SET name = $1 WHERE id = $2 RETURNING *',
+      [name, id]
+    )
+
+    return rows[0] ?? null
+  }
 }

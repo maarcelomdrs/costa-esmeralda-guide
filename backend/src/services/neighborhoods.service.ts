@@ -49,3 +49,16 @@ export async function deleteNeighborhoodById(
 
   return neighborhood
 }
+
+export async function patchNeighborhoodById(
+  id: number,
+  name: string
+): Promise<Neighborhood | null> {
+  const neighborhood = await neighborhoodsRepository.patchById(id, name)
+
+  if (!neighborhood) {
+    throw new Error('Falha ao atualizar bairro')
+  }
+
+  return neighborhood
+}
