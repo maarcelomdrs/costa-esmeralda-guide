@@ -43,7 +43,7 @@ export async function postNeighborhood(req: Request, res: Response) {
 
     const neighborhood = await neighborhoodsService.postNeighborhood(body.name)
 
-    return res.json(neighborhood)
+    return res.status(201).json(neighborhood)
   } catch (error) {
     console.error(error)
 
@@ -53,11 +53,9 @@ export async function postNeighborhood(req: Request, res: Response) {
 
 export async function deleteNeighborhood(req: Request, res: Response) {
   try {
-    const neighborhood = await neighborhoodsService.deleteNeighborhoodById(
-      Number(req.params.id)
-    )
+    await neighborhoodsService.deleteNeighborhoodById(Number(req.params.id))
 
-    return res.json(neighborhood)
+    return res.json({ message: 'Bairro deletado com sucesso' })
   } catch (error) {
     console.error(error)
 
