@@ -81,7 +81,7 @@ Cadastra um novo bairro no sistema.
 Atualiza um bairro específico no sistema.
 
 - **Método:** `PATCH`
-- **Endpoint:** `/neighborhoods/id:`
+- **Endpoint:** `/neighborhoods/:id`
 - **Path Params:**
   - `id` (number) - ID único do bairro
 - **Body (JSON):**
