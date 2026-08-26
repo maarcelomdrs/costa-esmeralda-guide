@@ -68,7 +68,7 @@ Cadastra um novo bairro no sistema.
     "name": "Areias"
 }
 ```
-#### Resposta de sucesso ('201 Created')
+#### Resposta de sucesso (`201 Created`)
 ```json
 {
     "id": 10,
@@ -90,7 +90,7 @@ Atualiza um bairro específico no sistema.
     "name": "AREIAS"
 }
 ```
-#### Resposta de sucesso ('200 OK')
+#### Resposta de sucesso (`200 OK`)
 ```json
 {
     "id": 10,
@@ -107,7 +107,7 @@ Deleta um bairro específico no sistema.
 - **Path Params:**
   - `id` (number) - ID único do bairro
 
-#### Resposta de sucesso ('200 OK')
+#### Resposta de sucesso (`200 OK`)
 ```json
 {
     "message": "Bairro deletado com sucesso"
