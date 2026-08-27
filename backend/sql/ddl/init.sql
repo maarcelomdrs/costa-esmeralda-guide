@@ -1,18 +1,18 @@
-/*
-        TODO:Criar quando nois botar o sistema de login
-
-CREATE TABLE users (
-    id INTEGER NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    name VARCHAR(99) NOT NULL,
-    creation_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-*/
 CREATE TABLE neighborhoods (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR(99) NOT NULL UNIQUE,
     
+    creation_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TYPE user_responsibility AS ENUM ('user', 'admin', 'moderator');
+CREATE TABLE users (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    name VARCHAR(99) NOT NULL,
+    responsibility user_responsibility NOT NULL DEFAULT 'user',
+
     creation_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 /*
