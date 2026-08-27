@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 
 import * as usersService from '../services/users.service'
+import { Validator } from '../validators/validator'
 
 export async function registerUser(req: Request, res: Response) {
   try {
@@ -17,11 +18,11 @@ export async function registerUser(req: Request, res: Response) {
       return res.status(400).json({ error: 'Formato de nome inválido' })
     }
 
-    /// TODO: add verificação de formato de email
     if (
       !('email' in body) ||
       typeof body.email !== 'string' ||
-      body.email.trim() === ''
+      body.email.trim() === '' ||
+      !Validator.isValidEmail(body.email)
     ) {
       return res.status(400).json({ error: 'Formato de email inválido' })
     }
