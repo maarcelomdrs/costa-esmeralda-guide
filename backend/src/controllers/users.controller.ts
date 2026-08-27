@@ -27,11 +27,11 @@ export async function registerUser(req: Request, res: Response) {
       return res.status(400).json({ error: 'Formato de email inválido' })
     }
 
-    /// TODO: add verificação de formato de senha
     if (
       !('password' in body) ||
       typeof body.password !== 'string' ||
-      body.password.trim() === ''
+      body.password.trim() === '' ||
+      !Validator.isValidPassword(body.password)
     ) {
       return res.status(400).json({ error: 'Formato de senha inválido' })
     }
