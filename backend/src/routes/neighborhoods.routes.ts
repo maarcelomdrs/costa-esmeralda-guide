@@ -7,16 +7,17 @@ import {
   deleteNeighborhood,
   patchNeighborhood
 } from '../controllers/neighborhoods.controller'
+import { jwtAuthGuard } from '../middlewares/jwtAuthGuard'
 
 const neighborhoodsRoutes = Router()
 
-neighborhoodsRoutes.get('/', getNeighborhoods)
-neighborhoodsRoutes.get('/:id', getNeighborhood)
+neighborhoodsRoutes.get('/', jwtAuthGuard, getNeighborhoods)
+neighborhoodsRoutes.get('/:id', jwtAuthGuard, getNeighborhood)
 
-neighborhoodsRoutes.post('/', postNeighborhood)
+neighborhoodsRoutes.post('/', jwtAuthGuard, postNeighborhood)
 
-neighborhoodsRoutes.delete('/:id', deleteNeighborhood)
+neighborhoodsRoutes.delete('/:id', jwtAuthGuard, deleteNeighborhood)
 
-neighborhoodsRoutes.patch('/:id', patchNeighborhood)
+neighborhoodsRoutes.patch('/:id', jwtAuthGuard, patchNeighborhood)
 
 export default neighborhoodsRoutes
