@@ -1,6 +1,7 @@
 import { pool } from '../databases/database'
 import { User } from '../interfaces/users.interface'
 import { UsersRepository } from '../repositories/users.repository'
+import { Bcrypt } from '../utils/bcrypt'
 
 const usersRepository = new UsersRepository(pool)
 
@@ -9,8 +10,7 @@ export async function registerUser(
   password: string,
   name: string
 ): Promise<Omit<User, 'password_hash'> | null> {
-  /// TODO: fazer o hash da senha com o bycript
-  const password_hash = password
+  const password_hash = await Bcrypt.hashPassword(password)
 
   const user = await usersRepository.create(email, password_hash, name)
 
