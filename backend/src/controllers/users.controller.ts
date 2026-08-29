@@ -49,3 +49,15 @@ export async function registerUser(req: Request, res: Response) {
     return res.status(500).json({ error: 'Erro interno' })
   }
 }
+
+export async function deleteUser(req: Request, res: Response) {
+  try {
+    await usersService.deleteUserById(Number(req.params.id))
+
+    return res.json({ message: 'Usuário deletado com sucesso' })
+  } catch (error) {
+    console.error(error)
+
+    return res.status(500).json({ error: 'Erro interno' })
+  }
+}

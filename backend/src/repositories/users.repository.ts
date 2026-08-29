@@ -26,4 +26,13 @@ export class UsersRepository {
 
     return rows[0] ?? null
   }
+
+  async delete(id: number): Promise<User | null> {
+    const { rows } = await this.pool.query<User>(
+      'DELETE FROM users WHERE (id) = $1 RETURNING *',
+      [id]
+    )
+
+    return rows[0] ?? null
+  }
 }

@@ -26,3 +26,12 @@ export async function registerUser(
     creation_date: user.creation_date
   }
 }
+
+export async function deleteUserById(id: number): Promise<User | null> {
+  const user = await usersRepository.delete(id)
+  if (!user) {
+    throw new Error('Usuário não encontrado')
+  }
+
+  return user
+}
