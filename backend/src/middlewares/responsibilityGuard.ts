@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
 import { JwtPayload } from '../interfaces/jwtPayload.interface'
-type UserResponsibility = 'user' | 'admin' | 'moderator'
+import { UserResponsibility } from '../interfaces/users.interface'
 
 export function responsibilityGuard(
   requiredResponsibility: UserResponsibility

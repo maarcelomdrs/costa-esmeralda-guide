@@ -1,4 +1,4 @@
-type UserResponsibility = 'user' | 'admin' | 'moderator'
+export type UserResponsibility = 'user' | 'admin' | 'moderator'
 
 export interface User {
   id: number
